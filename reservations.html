@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+  <title>Reservation Page</title>
+  <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/main.css">
+  <!-- <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script> -->
+</head>
+
+<body>
+  <!-- <script type="text/javascript"></script> -->
+  <div class="container">
+
+    <div class="jumbotron">
+      <h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
+      <hr>
+      <h2 class="text-center">We only have 5 tables! Book your seat before they all are gone!</h2>
+      <br>
+
+      <div class="text-center">
+        <a href="viewtables.html"><button type="button" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-list-alt"></span>
+            View Tables</button></a>
+        <a href="index.html"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-credit-card"></span>
+            Home</button></a>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card card-default">
+          <div class="card-header">
+            Table Reservation
+          </div>
+          <form method="POST">
+            <div class="form-group">
+              <label for>Name</label>
+              <input type="text" class="form-control" id="reserve_name">
+            </div>
+            <div class="form-group">
+              <label for>Phone Number</label>
+              <input type="text" class="form-control" id="reserve_phone">
+            </div>
+            <div class="form-group">
+              <label for>Email</label>
+              <input type="text" class="form-control" id="reserve_email">
+            </div>
+            <div class="form-group">
+              <label for>Unique ID</label>
+              <input type="text" class="form-control" id="reserve_id">
+            </div>
+            <button type="submit" class="btn btn-primary submit" id="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="assets/js/app.js">
+
+
+    $("#submit").on("click", function (event) {
+      event.preventDefault();
+      var newReservation = {
+        customerName: $("#reserve_name").val().trim(),
+        phoneNumber: $("#reserve_phone").val().trim(),
+        customerEmail: $("#reserve_email").val().trim(),
+        customerID: $("#reserve_ID").val().trim()
+      };
+
+      // Question: What does this code do??
+      $.post("/api/characters", newReservation)
+        .then(function (data) {
+          console.log("add.html", data);
+          alert("Adding reservation...");
+        });
+    });
+
+  </script>
+</body>
+
+</html>
