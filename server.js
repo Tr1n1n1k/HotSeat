@@ -9,7 +9,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'text.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/viewtables', function(req, res) {
+  res.sendFile(path.join(__dirname, 'viewtables.html'));
 });
 
 app.listen(PORT, function() {
