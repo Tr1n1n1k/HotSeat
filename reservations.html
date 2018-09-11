@@ -83,11 +83,15 @@
       };
 
       // Question: What does this code do??
-      $.post("/api/characters", newReservation)
-        .then(function (data) {
-          console.log("add.html", data);
-          alert("Adding reservation...");
-        });
+      $.post("/api/tables", newReservation, function (data) {
+
+        if (data) {
+          alert("You've created a reservation")
+        } else {
+          alert("Sorry, you're on the waitlist")
+        }
+      })
+
     });
 
   </script>
